@@ -10,6 +10,10 @@ Environment:
 
 ---
 
+- Repository Pattern (models, Controllers)
+- shalvah/laravel-jsend
+---
+
 ## Tasks Entity
 
 | Domain                      | Method    | URI                 | Name          | Action                                      | Middleware |

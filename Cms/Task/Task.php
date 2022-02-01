@@ -10,11 +10,15 @@ class Task extends BaseEntity
 
     protected $fillable = [
         'title',
-        'description'
+        'description',
+        'lat',
+        'lng'
     ];
 
     protected $casts = [
         'title' => 'string',
-        'description'  => 'string'
+        'description'  => 'string',
+        'lat' => 'double',
+        'lng' => 'double'
     ];
 }

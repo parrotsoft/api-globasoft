@@ -7,3 +7,15 @@
 Environment:
 - PHP 7.2.34
 - MySQL 5.7.33
+
+---
+
+## Tasks Entity
+
+| Domain                      | Method    | URI                 | Name          | Action                                      | Middleware |
+|-----------------------------|-----------|---------------------|---------------|---------------------------------------------|------------|
+|http://127.0.0.1:8000        | GET HEAD  | api/v1/tasks        | tasks.index   | App\Http\Controllers\TaskController@index   | api        |
+|http://127.0.0.1:8000        | POST      | api/v1/tasks        | tasks.store   | App\Http\Controllers\TaskController@store   | api        |
+|http://127.0.0.1:8000        | GET HEAD  | api/v1/tasks/{task} | tasks.show    | App\Http\Controllers\TaskController@show    | api        |
+|http://127.0.0.1:8000        | PUT PATCH | api/v1/tasks/{task} | tasks.update  | App\Http\Controllers\TaskController@update  | api        |
+|http://127.0.0.1:8000        | DELETE    | api/v1/tasks/{task} | tasks.destroy | App\Http\Controllers\TaskController@destroy | api        |

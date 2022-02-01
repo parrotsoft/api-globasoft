@@ -17,6 +17,7 @@ class AddColumnLatLongTasksTable extends Migration
             //
             $table->double('lat')->nullable();
             $table->double('lng')->nullable();
+            $table->boolean('completed')->default(false);
         });
     }
 
@@ -30,7 +31,8 @@ class AddColumnLatLongTasksTable extends Migration
         Schema::table('tasks', function (Blueprint $table) {
             //
             $table->dropColumn('lat');
-            $table->dropColumn('long');
+            $table->dropColumn('lng');
+            $table->dropColumn('completed');
         });
     }
 }

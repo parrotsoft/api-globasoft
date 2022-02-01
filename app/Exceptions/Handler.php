@@ -3,10 +3,12 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Shalvah\LaravelJsend\JsendExceptionFormatter;
 use Throwable;
 
 class Handler extends ExceptionHandler
 {
+    use JsendExceptionFormatter;
     /**
      * A list of the exception types that are not reported.
      *

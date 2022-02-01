@@ -11,4 +11,12 @@ class TaskRepo extends BaseRepo
     {
         return new Task();
     }
+
+    public function setValidation()
+    {
+        return [
+            'title' => 'required',
+            'description' => 'required'
+        ];
+    }
 }

@@ -8,6 +8,8 @@ abstract class BaseRepo implements BaseRepoInterface
 
     abstract public function getModel();
 
+    abstract public function setValidation();
+
     public function find($id)
     {
         try {
@@ -61,12 +63,7 @@ abstract class BaseRepo implements BaseRepoInterface
     public function destroy($id)
     {
         try {
-            $dato = $this->getModel()->findOrFail($id);
-            $dato->status = $dato->status ? 0: 1;
-            if($dato->save()) {
-                return $this->find($id);
-            }
-            return null;
+            return $this->getModel()->findOrFail($id)->delete();
         }catch (\Exception $e) {
             throw new \Exception($e->getMessage());
         }

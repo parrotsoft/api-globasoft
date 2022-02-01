@@ -8,6 +8,7 @@ use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Validator;
 
 class BaseController extends Controller
 {
@@ -54,6 +55,14 @@ class BaseController extends Controller
     public function store(Request $request)
     {
         try {
+
+            if (count($this->model->setValidation()) > 0) {
+                $validator = Validator::make($request->all(), $this->model->setValidation());
+
+                if ($validator->fails()) {
+                    return jsend_fail($validator->errors());
+                }
+            }
             return jsend_success($this->model->create($request->all()));
         }catch (\Exception $e) {
             return jsend_error('Error al guardar: '.$e->getMessage());
@@ -140,18 +149,4 @@ class BaseController extends Controller
 
     }
 
-    public function history($id)
-    {
-        if (is_numeric($id)) {
-            try {
-                return jsend_success($this->model->find($id)->revisionHistory);
-            } catch (\Exception $e) {
-                return jsend_error('Error al cargar el hitorial : ' . $e->getMessage());
-            } catch (QueryException $ex) {
-                return jsend_error('Error SQL: ' . $ex->getMessage());
-            }
-        } else {
-            return jsend_error('Error : Verificar que el ID sea numerico...');
-        }
-    }
 }

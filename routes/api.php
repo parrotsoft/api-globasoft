@@ -20,5 +20,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::prefix('v1')->group(function() {
     Route::resource('tasks','TaskController')->except(['edit','create']);
+    Route::resource('contacts','ContactController')->except(['edit','create']);
 });
 
